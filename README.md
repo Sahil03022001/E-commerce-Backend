@@ -11,6 +11,7 @@ Cart Management: APIs for adding items to the customer's cart, updating cart ite
 Order Processing: APIs for placing orders, updating order status, and retrieving order history.
 Billing: Automatic calculation and updating of the bill in the database based on the ordered items.
 
+
 Technologies Used
 Java: Core programming language used for developing the application logic.
 Spring Boot: Framework used for building the REST APIs and managing dependencies.
