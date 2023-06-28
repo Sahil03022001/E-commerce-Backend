@@ -14,11 +14,14 @@ import java.util.List;
 @RequestMapping("/seller")
 public class SellerController {
 
-    @Autowired
-    SellerService sellerService;
+    private final SellerService sellerService;
+
+    public SellerController(SellerService sellerService) {
+        this.sellerService = sellerService;
+    }
 
     @PostMapping("/add")
-    public ResponseEntity<String> registerSeller(@RequestBody SellerRequestDto sellerRequestDto){
+    public ResponseEntity<String> registerSeller(@RequestBody SellerRequestDto sellerRequestDto) throws Exception {
         sellerService.registerSeller(sellerRequestDto);
         return new ResponseEntity<>("Seller Registered", HttpStatus.CREATED);
     }

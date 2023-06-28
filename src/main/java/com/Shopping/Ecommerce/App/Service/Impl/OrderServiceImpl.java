@@ -19,17 +19,19 @@ import java.util.UUID;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+    private final CustomerRepository customerRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
+    public OrderServiceImpl(
+            OrderRepository orderRepository,
+            CustomerRepository customerRepository,
+            ProductRepository productRepository
+    ) {
+        this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
+        this.productRepository = productRepository;
+    }
 
     public OrderResponseDto placeOrder(OrderRequestDto orderRequestDto) throws Exception{
 

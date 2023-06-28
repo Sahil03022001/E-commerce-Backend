@@ -11,6 +11,7 @@ import com.Shopping.Ecommerce.App.RequestDTO.CustomerRequestDto;
 import com.Shopping.Ecommerce.App.RequestDTO.RemoveCardForCustomerDto;
 import com.Shopping.Ecommerce.App.ResponseDTO.CustomerResponseDto;
 import com.Shopping.Ecommerce.App.Service.CustomerService;
+import com.Shopping.Ecommerce.App.Validations.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,28 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    CardRepository cardRepository;
+    private final CardRepository cardRepository;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository,
+                               CardRepository cardRepository) {
+        this.customerRepository = customerRepository;
+        this.cardRepository = cardRepository;
+    }
 
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) throws Exception {
 
         String email = customerRequestDto.getEmail();
+        if(!Validation.validateEmail(customerRequestDto.getEmail())) {
+            throw new RuntimeException("Email not valid");
+        }
+
         String mobile = customerRequestDto.getMobNo();
+        if(!Validation.validateMobile(customerRequestDto.getMobNo())) {
+            throw new RuntimeException("Mobile number not valid");
+        }
+
         List<Customer> customerList = customerRepository.findAll();
         for(Customer customer : customerList){
             if(customer.getEmail().equals(email)){

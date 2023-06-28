@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SellerService {
 
-    void registerSeller(SellerRequestDto sellerRequestDto);
+    void registerSeller(SellerRequestDto sellerRequestDto) throws Exception;
 
     List<SellerResponseDto> getAllSellers();
 

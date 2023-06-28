@@ -20,20 +20,22 @@ import java.util.UUID;
 @Service
 public class CartServiceImpl implements CartService {
 
-    @Autowired
-    CartRepository cartRepository;
+    private final CartRepository cartRepository;
+    private final CustomerRepository customerRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
-    OrderRepository orderRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
+    public CartServiceImpl(
+            CartRepository cartRepository,
+            CustomerRepository customerRepository,
+            ProductRepository productRepository,
+            OrderRepository orderRepository
+    ) {
+        this.cartRepository = cartRepository;
+        this.customerRepository = customerRepository;
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
+    }
 
 
     @Override

@@ -2,6 +2,7 @@ package com.Shopping.Ecommerce.App.Controller;
 
 import com.Shopping.Ecommerce.App.RequestDTO.OrderRequestDto;
 import com.Shopping.Ecommerce.App.ResponseDTO.OrderResponseDto;
+import com.Shopping.Ecommerce.App.Service.CardService;
 import com.Shopping.Ecommerce.App.Service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +15,11 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
 
-    @Autowired
-    CartService cartService;
+    private final CartService cartService;
+
+    public CartController(CartService cardService) {
+        this.cartService = cardService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity addItem(@RequestBody OrderRequestDto orderRequestDto){

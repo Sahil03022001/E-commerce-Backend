@@ -9,23 +9,29 @@ import com.Shopping.Ecommerce.App.RequestDTO.CardRequestDto;
 import com.Shopping.Ecommerce.App.ResponseDTO.CardDto;
 import com.Shopping.Ecommerce.App.ResponseDTO.CardResponseDto;
 import com.Shopping.Ecommerce.App.Service.CardService;
+import com.Shopping.Ecommerce.App.Validations.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CardServiceImpl implements CardService {
 
-    @Autowired
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+
+    public CardServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public CardResponseDto addCard(CardRequestDto cardRequestDto) throws Exception {
-        if(cardRequestDto.getCardNo().length() != 16){
+        if(!Validation.validateCardNumber(cardRequestDto.getCardNo(), cardRequestDto.getCardType())){
             throw new Exception("Invalid Card number");
         }
+
         Customer customer;
         try{
             customer = customerRepository.findById(cardRequestDto.getCustomerId()).get();
@@ -48,14 +54,19 @@ public class CardServiceImpl implements CardService {
         CardResponseDto cardResponseDto = new CardResponseDto();
         cardResponseDto.setName(customer.getName());
         List<Card> cards = customer.getCards();
-        List<CardDto> cardDtos = new ArrayList<>();
-        for(Card card1 : cards){
-            CardDto cardDto = new CardDto();
-            cardDto.setCardNo(card1.getCardNo());
-            cardDto.setCardType(card1.getCardType());
-            cardDtos.add(cardDto);
-        }
+        List<CardDto> cardDtos = cards
+                .stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
+
         cardResponseDto.setCards(cardDtos);
         return cardResponseDto;
+    }
+
+    private CardDto convert(Card card) {
+        CardDto cardDto = new CardDto();
+        cardDto.setCardNo(card.getCardNo());
+        cardDto.setCardType(card.getCardType());
+        return cardDto;
     }
 }

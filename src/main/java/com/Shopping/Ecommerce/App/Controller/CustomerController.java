@@ -17,8 +17,11 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+    private final CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity addCustomer(@RequestBody CustomerRequestDto customerRequestDto){

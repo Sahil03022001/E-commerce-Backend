@@ -20,11 +20,16 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final SellerRepository sellerRepository;
 
-    @Autowired
-    SellerRepository sellerRepository;
+    public ProductServiceImpl(
+            ProductRepository productRepository,
+            SellerRepository sellerRepository
+    ) {
+        this.productRepository = productRepository;
+        this.sellerRepository = sellerRepository;
+    }
 
     @Override
     public ProductResponseDto registerProduct(ProductRequestDto productRequestDto) throws SellerNotPresentException {

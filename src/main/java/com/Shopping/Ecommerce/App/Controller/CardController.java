@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/card")
 public class CardController {
 
-    @Autowired
-    CardService cardService;
+    private final CardService cardService;
+
+    public CardController(CardService cardService) {
+        this.cardService = cardService;
+    }
 
     @PutMapping("/add")
     public ResponseEntity addCard(@RequestBody CardRequestDto cardRequestDto){
