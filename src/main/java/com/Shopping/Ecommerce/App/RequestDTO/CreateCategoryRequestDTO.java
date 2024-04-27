@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class ProductRequestDto {
+public class CreateCategoryRequestDTO {
 
     private String name;
-    private int price;
-    private String categoryName;
-    private int quantity;
-    private int sellerID;
 }

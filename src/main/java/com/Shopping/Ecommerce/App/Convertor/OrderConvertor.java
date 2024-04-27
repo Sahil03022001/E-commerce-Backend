@@ -15,7 +15,6 @@ public class OrderConvertor {
                 .customerEmail(customer.getEmail())
                 .customerMobileNo(customer.getMobNo())
                 .productName(product.getName())
-                .productCategory(product.getCategory())
                 .sellerName(product.getSeller().getName())
                 .requiredQuantity(reqQuantity)
                 .orderedDate(order.getOrderedDate())

@@ -14,7 +14,6 @@ public class ProductConvertor {
                 .name(productRequestDto.getName())
                 .price(productRequestDto.getPrice())
                 .quantity(productRequestDto.getQuantity())
-                .category(productRequestDto.getCategory())
                 .productStatus(ProductStatus.IN_STOCK)
                 .build();
     }
@@ -24,7 +23,6 @@ public class ProductConvertor {
                 .productName(product.getName())
                 .price(product.getPrice())
                 .quantity(product.getQuantity())
-                .category(product.getCategory())
                 .sellerName(product.getSeller().getName())
                 .productStatus(product.getProductStatus())
                 .build();

@@ -1,6 +1,5 @@
 package com.Shopping.Ecommerce.App.ResponseDTO;
 
-import com.Shopping.Ecommerce.App.Enum.Category;
 import com.Shopping.Ecommerce.App.Enum.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ public class ProductResponseDto {
 
     private String productName;
     private int price;
-    private Category category;
+    private String categoryName;
     private int quantity;
     private String sellerName;
     private ProductStatus productStatus;
