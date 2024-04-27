@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 @UtilityClass
 public class Validation {
 
+    private static final String NULL = "null";
+    private static final String EMPTY_STRING = "";
+
     public static boolean validateEmail(String email) {
         return email.matches("(.*)@(.*)mail.com");
     }
@@ -37,5 +40,12 @@ public class Validation {
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(cardNo);
         return m.matches();
+    }
+
+    public static String validateRequest(Object entity) {
+        if (entity == null) {
+            return NULL;
+        }
+        return EMPTY_STRING;
     }
 }

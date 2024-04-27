@@ -124,7 +124,7 @@ public class CartServiceImpl implements CartService {
             Card card = customer.getCards().get(0);
             String cardNo = card.getCardNo();
             String cardNumber = "";
-            for(int i=0; i<12; i++){
+            for(int i = 0; i < 12; i++){
                 cardNumber += 'X';
             }
             cardNumber += cardNo.substring(12);

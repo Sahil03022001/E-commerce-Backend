@@ -1,10 +1,8 @@
 package com.Shopping.Ecommerce.App.Controller;
 
-import com.Shopping.Ecommerce.App.Enum.Category;
 import com.Shopping.Ecommerce.App.RequestDTO.ProductRequestDto;
 import com.Shopping.Ecommerce.App.ResponseDTO.ProductResponseDto;
 import com.Shopping.Ecommerce.App.Service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +34,6 @@ public class ProductController {
     @GetMapping("/getAll")
     public List<ProductResponseDto> getAllProducts(){
         return productService.getAllProducts();
-    }
-
-    @GetMapping("/getAllByCategory/{category}")
-    public List<ProductResponseDto> getAllProductsByCategory(@PathVariable("category") Category category){
-        return productService.getAllProductsByCategory(category);
     }
 
     @GetMapping("/5MostExpensive")

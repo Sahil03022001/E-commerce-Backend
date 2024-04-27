@@ -1,6 +1,5 @@
 package com.Shopping.Ecommerce.App.Model;
 
-import com.Shopping.Ecommerce.App.Enum.Category;
 import com.Shopping.Ecommerce.App.Enum.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,9 +24,6 @@ public class Product {
     private int price;
 
     @Enumerated(EnumType.STRING)
-    private Category category;
-
-    @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;
 
     private int quantity;
@@ -37,4 +31,8 @@ public class Product {
     @ManyToOne
     @JoinColumn
     Seller seller;
+
+    @ManyToOne
+    @JoinColumn
+    private Category category;
 }
